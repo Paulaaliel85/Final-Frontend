@@ -1,9 +1,18 @@
-<template>
-    <nav>
-        <RouterLink to="/">Inicio </RouterLink>
-        <RouterLink to="/productos">Productos</RouterLink>
-        <RouterLink to="/carrito">Carrito</RouterLink>
-        <RouterLink to="/pagos">Pagos</RouterLink>
+<script setup>
+import { useCartStore } from '../stores/cartStore'
 
-    </nav>
-    </template>
+const cartStore = useCartStore()
+</script>
+
+<template>
+  <nav>
+    <RouterLink to="/">Inicio</RouterLink>
+    <RouterLink to="/productos">Productos</RouterLink>
+
+    <RouterLink to="/carrito">
+      Carrito ({{ cartStore.cantidadProductos }})
+    </RouterLink>
+
+    <RouterLink to="/pagos">Mis pagos</RouterLink>
+  </nav>
+</template>
