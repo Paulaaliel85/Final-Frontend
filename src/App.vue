@@ -7,3 +7,4 @@ import Navbar from './components/navbar.vue'
 
   <RouterView />
 </template>
+
