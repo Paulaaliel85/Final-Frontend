@@ -7,5 +7,7 @@
       Consultá el estado de tus compras y cuotas.
     </p>
 
-  </main> 
+  
+
+  </main>
 </template>

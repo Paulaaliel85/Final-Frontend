@@ -63,7 +63,7 @@ function agregarAlCarrito(producto) {
             :alt="producto.nombre"
             class="h-full w-full object-cover"
           />
-          <span v-else>🛍️</span>
+          <span v-else></span>
           
         </div>
 

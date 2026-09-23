@@ -5,11 +5,9 @@ import { useCartStore } from '../stores/cartStore'
 
 const cartStore = useCartStore()
 
-
 const emit = defineEmits(['close'])
 
-
-const META_ENVIO_GRATIS = 50000
+const META_ENVIO_GRATIS = 150000
 
 
 const totalCarrito = computed(() => {
@@ -216,7 +214,7 @@ const eliminarProducto = (id) => {
 
 
               <p class="mt-1 text-xs text-gray-400">
-                {{ producto.marca || 'Maquillaje' }}
+                {{ producto.marca || 'Maquillaje 12 unidades' }}
               </p>
 
 
@@ -356,7 +354,7 @@ const eliminarProducto = (id) => {
 
 
           <span class="font-semibold text-pink-300">
-            {{ restanteEnvio === 0 ? 'Gratis' : 'A calcular' }}
+            {{ restanteEnvio === 0 ? 'Gratis' : 'Gratis superando los $' + META_ENVIO_GRATIS.toLocaleString('es-AR') }}
           </span>
 
 

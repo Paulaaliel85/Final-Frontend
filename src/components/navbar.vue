@@ -28,7 +28,6 @@ const mostrarCarrito = ref(false)
           Productos
         </RouterLink>
 
-        <!-- BOTÓN DEL CARRITO -->
         <button
           class="text-gray-300 transition hover:text-violet-400"
           @click="mostrarCarrito = true"
