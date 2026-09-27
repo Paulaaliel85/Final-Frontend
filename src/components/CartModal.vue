@@ -214,7 +214,8 @@ const eliminarProducto = (id) => {
 
 
               <p class="mt-1 text-xs text-gray-400">
-                {{ producto.marca || 'Maquillaje 12 unidades' }}
+                {{ producto.cantidad || 1 }} set (s)
+                {{ (producto.unidadesPorSet || 12) * (producto.cantidad || 1) }} unidades
               </p>
 
 

@@ -9,6 +9,7 @@ const productos = [
     nombre: 'Labial Maybelline ',
     categoria: 'Labiales de 12 Unidades',
     precio: 44000,
+    unidadesPorSet: 12,
     image: './src/assets/labial.jpg'
   },
   {
@@ -16,6 +17,7 @@ const productos = [
     nombre: 'Labial Girl Power',
     categoria: 'Labiales de 12 Unidades',
     precio: 60000,
+    unidadesPorSet: 12,
     image: './src/assets/labial2.png'
   },
   {
@@ -23,6 +25,7 @@ const productos = [
     nombre: 'Mascara Lash Sensational',
     categoria: 'Mascaras de 8 Unidades',
     precio: 70000,
+    unidadesPorSet: 8,
     image: './src/assets/mascaras.jpg'
   },
   {
@@ -30,6 +33,7 @@ const productos = [
     nombre: 'Set de Brochas',
     categoria: 'Accesorios 10 Brochas',
     precio: 45000,
+    unidadesPorSet: 10,
     image: './src/assets/brochass.jpg'
   }
 ]
