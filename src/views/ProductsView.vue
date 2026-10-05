@@ -10,7 +10,7 @@ const productos = [
     categoria: 'Labiales de 12 Unidades',
     precio: 44000,
     unidadesPorSet: 12,
-    image: './src/assets/labial.jpg'
+    image: './src/assets/labiall.jpg'
   },
   {
     id: 2,
@@ -18,7 +18,7 @@ const productos = [
     categoria: 'Labiales de 12 Unidades',
     precio: 60000,
     unidadesPorSet: 12,
-    image: './src/assets/labial2.png'
+    image: './src/assets/labial3.jpg'
   },
   {
     id: 3,
@@ -26,7 +26,7 @@ const productos = [
     categoria: 'Mascaras de 8 Unidades',
     precio: 70000,
     unidadesPorSet: 8,
-    image: './src/assets/mascaras.jpg'
+    image: './src/assets/mascaraa.jpg'
   },
   {
     id: 4,
@@ -35,7 +35,40 @@ const productos = [
     precio: 45000,
     unidadesPorSet: 10,
     image: './src/assets/brochass.jpg'
+  },
+  {
+    id: 5,
+    nombre: 'Paleta de Sombras',
+    categoria: 'Paletas de 12 Unidades',
+    precio: 55000,
+    unidadesPorSet: 12,
+    image: './src/assets/paletas.jpg'
+  },
+  {
+    id: 6,
+    nombre: 'Gloss Labial',
+    categoria: 'Gloss de 6 Unidades',
+    precio: 30000,
+    unidadesPorSet: 6,
+    image: './src/assets/gloss.png'
+  },
+  {
+    id: 7,
+    nombre: 'Sombra de Ojos',
+    categoria: 'Sombras de 12 Unidades',
+    precio: 40000,
+    unidadesPorSet: 12,
+    image: './src/assets/Sombras.jpg'
+  },
+  {
+    id: 8,
+    nombre: 'Iluminador en polvo',
+    categoria: 'Iluminadores de 6 Unidades',
+    precio: 35000,
+    unidadesPorSet: 6,
+    image: './src/assets/iluminador.jpg'
   }
+
 ]
 
 function agregarAlCarrito(producto) {

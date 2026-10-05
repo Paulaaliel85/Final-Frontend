@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { useCartStore } from '../stores/cartStore'
 
 
-const cartStore = useCartStore()
+const cartStore = useCartStore() 
 
 const emit = defineEmits(['close'])
 
@@ -13,7 +13,7 @@ const META_ENVIO_GRATIS = 150000
 const totalCarrito = computed(() => {
   if (cartStore.total) {
     return cartStore.total
-  }
+  }  // 
 
 
   return cartStore.carrito.reduce(
