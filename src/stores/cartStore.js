@@ -3,8 +3,7 @@ import { ref, computed } from 'vue'
 
 export const useCartStore = defineStore('cart', () => {
 
-  // Productos que están actualmente en el carrito
-  const carrito = ref([])
+    const carrito = ref([])
 
   // Cantidad total de unidades
   const cantidadProductos = computed(() => {
