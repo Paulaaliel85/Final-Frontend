@@ -3,11 +3,9 @@ import { ref, computed } from 'vue'
 
 export const useAuthStore = defineStore('auth', () => {
 
-  // Usuario actualmente autenticado
   const usuario = ref(null)
 
-  // Indica si existe una sesión iniciada
-  const estaAutenticado = computed(() => {
+    const estaAutenticado = computed(() => {
     return usuario.value !== null
   })
 
@@ -29,7 +27,6 @@ export const useAuthStore = defineStore('auth', () => {
     return false
   }
 
-  // Cerrar sesión
   function logout() {
     usuario.value = null
   }
