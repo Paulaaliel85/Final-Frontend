@@ -1,6 +1,13 @@
 <template>
-  <main>
-    <h1>Mis pagos</h1>
-    <p>Acá podrás consultar tu cronograma de pagos.</p>
+  <main class="page">
+
+    <h1 class="page-title">Mis pagos</h1>
+
+    <p class="page-subtitle">
+      Consultá el estado de tus compras y cuotas.
+    </p>
+
+  
+
   </main>
 </template>
