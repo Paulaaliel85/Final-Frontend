@@ -1,7 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
-
 import { useCartStore } from '../stores/cartStore'
 import { usePaymentStore } from '../stores/paymentStore'
 
