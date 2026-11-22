@@ -1,6 +1,7 @@
 <script setup>
 import { useCartStore } from '../stores/cartStore'
-
+// 
+const img = (nombre) => new URL(`../assets/${nombre}`, import.meta.url).href
 const cartStore = useCartStore()
 
 const productos = [
@@ -78,7 +79,6 @@ function agregarAlCarrito(producto) {
 
 <template>
   <main class="page">
-
     <h1 class="page-title">Productos</h1>
 
     <p class="page-subtitle">
@@ -86,7 +86,6 @@ function agregarAlCarrito(producto) {
     </p>
 
     <section class="products-grid">
-
       <article
         v-for="producto in productos"
         :key="producto.id"
@@ -122,8 +121,6 @@ function agregarAlCarrito(producto) {
         </button>
 
       </article>
-
     </section>
-
   </main>
 </template>

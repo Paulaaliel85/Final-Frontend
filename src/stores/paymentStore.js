@@ -22,6 +22,31 @@ export const usePaymentStore = defineStore('payments', () => {
     { deep: true }
   )
 
+  // Historial de compras ya pagadas completamente.
+const historialGuardado = localStorage.getItem('armaquillaje_historial')
+
+const historial = ref(
+  historialGuardado ? JSON.parse(historialGuardado) : []
+)
+
+watch(
+  historial,
+  (nuevoHistorial) => {
+    localStorage.setItem(
+      'armaquillaje_historial',
+      JSON.stringify(nuevoHistorial)
+    )
+  },
+  { deep: true }
+)
+
+// Resumen que se muestra en pantalla al pagar la última cuota.
+const resumenFinal = ref(null)
+
+function cerrarResumen() {
+  resumenFinal.value = null
+}
+
   // Calcula las fechas de vencimiento de las cuotas.
   function obtenerVencimiento(meses) {
     const fecha = new Date()
@@ -116,7 +141,27 @@ export const usePaymentStore = defineStore('payments', () => {
     )
 
     if (todasPagadas) {
-  // Elimina la compra de la lista inmediatamente.
+  const registro = {
+    id: compra.id,
+    fechaCompra: compra.fecha,
+    fechaFinalizacion: siguienteCuota.fechaPago,
+    total: compra.total,
+    cantidadCuotas: compra.cantidadCuotas,
+    productos: compra.productos.map((p) => ({
+      nombre: p.nombre,
+      cantidad: p.cantidad,
+      precio: p.precio
+    })),
+    cuotas: compra.cuotas.map((c) => ({
+      numero: c.numero,
+      importe: c.importe,
+      fechaPago: c.fechaPago
+    }))
+  }
+
+  historial.value.unshift(registro)
+  resumenFinal.value = registro
+
   compras.value = compras.value.filter(
     (item) => item.id !== compraId
   )
@@ -138,6 +183,8 @@ export const usePaymentStore = defineStore('payments', () => {
 
   return {
     compras,
+    historial,
+    resumenFinal,
     registrarCompra,
     pagarCuota
   }

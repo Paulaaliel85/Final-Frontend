@@ -44,14 +44,14 @@ const paymentStore = usePaymentStore()
       <!-- Mensaje cuando no hay compras -->
       <div
         v-if="paymentStore.compras.length === 0"
-        class="rounded-3xl bg-white p-12 text-center shadow-sm"
+        class="rounded-3xl bg-white p-5 text-center shadow-sm"
       >
-        <h2 class="mt-4 font-semibold text-gray-700">
+        <h2 class="mt-1 font-semibold text-gray-700">
           No tenés compras registradas
         </h2>
 
-        <p class="mt-2 text-sm text-gray-400">
-          Realizá tu primera compra para ver el estado de tus pagos aquí.
+        <p class="mt-1 text-sm text-gray-400">
+          Realizá una compra
         </p>
       </div>
 
@@ -70,7 +70,7 @@ const paymentStore = usePaymentStore()
           >
             <div class="flex items-center w-120 gap-4">
               <div
-                class="flex w-16 h-10 w-10 shrink-0 items-center justify-center rounded-full bg-pink-50"
+                class="flex shrink-0 items-center justify-center rounded-full bg-pink-50"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +100,7 @@ const paymentStore = usePaymentStore()
             </div>
 
             <span
-              class="self-start w-22 text-center rounded-full px-4 py-2 text-sm font-semibold sm:self-center"
+              class="self-start text-center rounded-full px-4 py-2 text-sm font-semibold sm:self-center"
               :class="{
                 'text-amber-400': compra.estado === 'Pendiente',
                 'text-blue-400': compra.estado === 'En curso',
@@ -150,7 +150,7 @@ const paymentStore = usePaymentStore()
           <!-- Total pagado y saldo pendiente -->
           <div class="mx-auto grid max-w-lg grid-cols-2 px-6 pb-6 text-center">
 
-            <div class="border-r w-120 border-gray-300 px-4">
+            <div class="border-r border-gray-300 px-4">
               <p class="text-sm text-gray-400">
                 Total pagado
               </p>
@@ -160,7 +160,7 @@ const paymentStore = usePaymentStore()
               </p>
             </div>
 
-            <div class="px-4 w-160">
+            <div class="px-4">
               <p class="text-sm text-gray-400">
                 Saldo pendiente
               </p>
@@ -174,8 +174,7 @@ const paymentStore = usePaymentStore()
 
           <!-- Detalle de cuotas -->
           <section
-            class="mx-4 mb-6 rounded-xl bg-rose-200 px-5 py-5 sm:mx-6"
-          >
+            class="mx-4 mb-6 rounded-xl bg-rose-200 px-3 py-1 sm:mx-6">
 
             <h3 class="mb-5 text-center font-bold text-gray-700">
               Detalle de cuotas
@@ -192,23 +191,13 @@ const paymentStore = usePaymentStore()
               </span>
             </div>
 
-            <!-- Barra de progreso -->
-            <div class="mb-5 h-2 overflow-hidden rounded-full bg-white">
-              <div
-                class="h-full rounded-full bg-pink-400 transition-all"
-                :style="{
-                  width: `${compra.total ? (compra.totalPagado / compra.total) * 100 : 0}%`
-                }"
-              ></div>
-            </div>
-
             <!-- Listado de cuotas -->
-            <div class="space-y-3 w-220">
+            <div class="w-full">
 
               <div
                 v-for="cuota in compra.cuotas"
                 :key="cuota.numero"
-                class="flex flex-col  h-14 gap-4 rounded-xl bg-rose-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between"
+                class="flex flex-col gap-4 rounded-xl bg-rose-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between"
               >
 
                 <div>
@@ -231,7 +220,7 @@ const paymentStore = usePaymentStore()
                   </span>
 
                   <span
-                    class="rounded-full px-3 py-2 text-sm font-semibold"
+                    class="rounded-full px-1 py-2 text-sm font-semibold"
                     :class="cuota.estado === 'Pagada'
                       ? 'text-green-400'
                       : 'text-amber-600'"
@@ -243,7 +232,7 @@ const paymentStore = usePaymentStore()
                     v-if="cuota.estado === 'Pendiente'"
                     :disabled="compra.cuotas.find(c => c.estado === 'Pendiente')?.numero !== cuota.numero"
                     @click="paymentStore.pagarCuota(compra.id, cuota.numero)"
-                    class="rounded-lg h-8 bg-pink-400 px-5 py-3 text-base text-white transition hover:bg-pink-500 disabled:cursor-not-allowed disabled:bg-gray-300"
+                    class="rounded-lg bg-pink-400 px-4 py-1 text-base text-white transition hover:bg-pink-500 disabled:cursor-not-allowed disabled:bg-gray-300"
                   >
                     Pagar cuota
                   </button>
@@ -256,7 +245,6 @@ const paymentStore = usePaymentStore()
 
           <!-- Productos de la compra -->
           <div class="w-full px-6 pb-6 pt-2">
-
             <h3
               class="mb-4 text-center text-base font-bold text-pink-400"
             >
@@ -264,15 +252,12 @@ const paymentStore = usePaymentStore()
             </h3>
 
             <div class="overflow-hidden rounded-2xl border border-gray-100">
-
               <div
                 v-for="producto in compra.productos"
                 :key="producto.id"
-                class="flex flex-col items-center justify-between gap-3 border-b border-gray-100 px-5 py-4 last:border-b-0 sm:flex-row"
-              >
+                class="flex flex-col items-center justify-between gap-3 border-b border-gray-100 px-5 py-4 last:border-b-0 sm:flex-row">
 
                 <div class="flex flex-wrap items-center justify-center gap-4 sm:justify-start">
-
                   <p class="text-sm font-semibold text-gray-600">
                     {{ producto.nombre }}
                   </p>
@@ -288,18 +273,73 @@ const paymentStore = usePaymentStore()
                   </p>
 
                 </div>
-
                 <span class="font-semibold text-gray-700">
                   ${{
                     (producto.precio * producto.cantidad).toLocaleString('es-AR')
                   }}
                 </span>
-
               </div>
             </div>
           </div>
-
         </article>
+      </div>
+
+      <!-- Compras finalizadas -->
+      <div v-if="paymentStore.historial.length > 0" class="mt-12">
+        <h2 class="mb-4 text-xl font-bold text-gray-800">
+          Compras finalizadas
+        </h2>
+
+        <div class="space-y-6">
+
+          <article
+            v-for="registro in paymentStore.historial"
+            :key="registro.id"
+            class="overflow-hidden rounded-lg border border-green-200 bg-white shadow-sm">
+
+            <!-- Encabezado -->
+            <div class="flex items-center justify-between border-b border-gray-100 px-8 py-5">
+              <div>
+
+                <h3 class="text-sm font-bold text-gray-700">
+                  Compra #{{ registro.id }}
+                </h3>
+
+                <p class="mt-1 text-sm text-gray-400">
+                  Comprada el {{ registro.fechaCompra }} ·
+                  Finalizada el {{ registro.fechaFinalizacion }}
+                </p>
+              </div>
+              <span class="text-sm font-semibold text-green-500">Pagada</span>
+            </div>
+
+
+            <!-- Productos -->
+            <div class="px-8 py-4">
+              <div
+                v-for="p in registro.productos"
+                :key="p.nombre"
+                class="flex justify-between py-1 text-sm text-gray-600">
+
+                <span>{{ p.nombre }} (x{{ p.cantidad }})</span>
+                <span>${{ (p.precio * p.cantidad).toLocaleString('es-AR') }}</span>
+              </div>
+            </div>
+
+
+
+            <!-- Total -->
+            <div class="flex justify-between bg-green-50 px-8 py-4 text-sm font-bold text-gray-700">
+              <span>
+                Total pagado en {{ registro.cantidadCuotas }}
+                {{ registro.cantidadCuotas === 1 ? 'cuota' : 'cuotas' }}
+
+              </span>
+              <span>${{ registro.total.toLocaleString('es-AR') }}</span>
+
+            </div>
+          </article>
+        </div>
       </div>
 
     </section>

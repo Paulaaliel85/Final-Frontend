@@ -12,7 +12,6 @@ const mostrarCuotas = ref(false)
 const cantidadCuotas = ref(3)
 
 const emit = defineEmits(['close'])
-
 const META_ENVIO_GRATIS = 150000
 
 
@@ -20,7 +19,6 @@ const totalCarrito = computed(() => {
   if (cartStore.total) {
     return cartStore.total
   }  // 
-
 
   return cartStore.carrito.reduce(
     (total, producto) =>
@@ -32,8 +30,6 @@ const totalCarrito = computed(() => {
 
 const restanteEnvio = computed(() => {
   const diferencia = META_ENVIO_GRATIS - totalCarrito.value
-
-
   return diferencia > 0 ? diferencia : 0
 })
 
@@ -41,7 +37,6 @@ const restanteEnvio = computed(() => {
 const porcentajeEnvio = computed(() => {
   const porcentaje =
     (totalCarrito.value / META_ENVIO_GRATIS) * 100
-
 
   return Math.min(porcentaje, 100)
 })
@@ -76,11 +71,9 @@ const eliminarProducto = (id) => {
 }
 
 function mostrarOpcionesDePago() {
-
   if (cartStore.carrito.length === 0) {
     return
   }
-
   mostrarCuotas.value = true
 }
 
@@ -94,9 +87,7 @@ function confirmarCompra() {
   )
 
   cartStore.vaciarCarrito()
-
   emit('close')
-
   router.push('/pagos')
 }
 
@@ -167,7 +158,7 @@ function confirmarCompra() {
           class="flex items-center justify-between rounded-2xl border border-pink-50 bg-white p-3.5 shadow-sm">
           <div class="flex items-center gap-4">
             <div
-              class="flex h-[130px] w-[90px] shrink-0 items-center justify-center overflow-hidden rounded-xl bg-pink-50">
+              class="flex h-[130px] shrink-0 items-center justify-center overflow-hidden rounded-xl bg-pink-50">
               <img
                 v-if="producto.image || producto.imagen"
                 :src="producto.image || producto.imagen"
@@ -254,7 +245,7 @@ function confirmarCompra() {
       </div>
 
       <div class="border-t w-full border-pink-100 px-7 py-5">
-        <div class="flex justify-center w-260 text-sm text-gray-500">
+        <div class="flex justify-center text-sm text-gray-500">
           <span>
           Subtotal:
           </span>
@@ -263,11 +254,11 @@ function confirmarCompra() {
           </span>
         </div>
 
-        <div class="mt-2 flex justify-center w-270 text-sm text-gray-500">
+        <div class="mt-2 flex justify-center text-sm text-gray-500">
           <span>
             Envío:  
           </span>
-          <span class="w-85 font-semibold w text-pink-300">
+          <span class="font-semibold w text-pink-300">
             {{ restanteEnvio === 0 ? 'Gratis' : 'Gratis superando los $' + META_ENVIO_GRATIS.toLocaleString('es-AR') }}
           </span>
         </div>
@@ -281,13 +272,12 @@ function confirmarCompra() {
           </span>
         </div>
 
-         <div v-if="mostrarCuotas"
-        class="mb-5 h-25 rounded-2xl bg-pink-50 p-5">
+         <div v-if="mostrarCuotas" class="mb-4 rounded-xl bg-pink-50 p-1">
         <p class="text-center text-sm font-semibold text-gray-700">
         Elegí tu plan de pago
         </p>
 
-        <div class="mt-4 w-full grid grid-cols-3 gap-3">
+        <div class="mt-2 w-full grid grid-cols-3 gap-2">
       <button type="button"
       @click="cantidadCuotas = 1"
       :class="[
@@ -343,19 +333,18 @@ function confirmarCompra() {
   <button
     type="button"
     @click="confirmarCompra"
-    class="mt-4 w-full h-6 rounded-xl bg-pink-400 px-4 py-3 text-sm font-semibold text-white transition hover:bg-pink-500"
-  >
+    class="mt-4 w-full rounded-xl bg-pink-400 px-2 py-1 text-sm font-semibold text-white transition hover:bg-pink-500">
     Confirmar compra
   </button> 
 </div>
 
-<div class="flex w-full h-10 justify-center">
+<div class="flex w-full justify-center">
   <button v-if="!mostrarCuotas"
   :disabled="cartStore.carrito.length === 0"
   @click="mostrarOpcionesDePago"
-    class="flex w-72 h-6 items-center justify-center rounded-xl bg-pink-300 px-6 py-2.5 text-xs font-semibold text-white hover:bg-pink-400"
-  >  Finalizar compra
-</button>
+    class="flex items-center justify-center rounded-xl bg-pink-300 px-6 py-2.5 text-xs font-semibold text-white hover:bg-pink-400">
+      Finalizar compra
+    </button>
 
      </div>
    </div>
