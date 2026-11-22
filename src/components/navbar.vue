@@ -10,7 +10,7 @@ const mostrarCarrito = ref(false)
 
 <template>
 
-  <header class="navbar">
+  <header class="navbar sticky top-0 z-50">
     <div class="navbar-container">
 
       <RouterLink to="/" class="logo">
